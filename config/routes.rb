@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     post 'signup', to: 'auth#signup'
     
     resources :messages, only: [:index, :create]
+    
+    post 'webhooks/status', to: 'webhooks#status_callback'
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

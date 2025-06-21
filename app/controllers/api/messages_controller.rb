@@ -23,18 +23,22 @@ class Api::MessagesController < Api::BaseController
 
   def send_sms(message)
     begin
+
       client = Twilio::REST::Client.new(
         ENV['TWILIO_ACCOUNT_SID'],
         ENV['TWILIO_AUTH_TOKEN']
       )
 
+      status_callback_url = "#{request.base_url}/api/webhooks/status"
+      
       twilio_message = client.account.messages.create(
         from: ENV['TWILIO_PHONE_NUMBER'],
         to: "+#{message.phone_number}",
-        body: message.text
+        body: message.text,
+        status_callback: status_callback_url
       )
 
-      message.update(status: 'sent', twilio_sid: twilio_message.sid)
+      message.update(status: 'pending', twilio_sid: twilio_message.sid)
     rescue StandardError => e
       message.update(status: 'failed')
       Rails.logger.error "SMS sending error: #{e.message}"

@@ -31,6 +31,7 @@ class Api::MessagesControllerTest < ActionDispatch::IntegrationTest
     json_response = JSON.parse(response.body)
     assert_equal '1234567890', json_response['phone_number']
     assert_equal 'Test message', json_response['text']
+    assert_equal 'pending', json_response['status'] 
   end
 
   test "should not create message without authentication" do

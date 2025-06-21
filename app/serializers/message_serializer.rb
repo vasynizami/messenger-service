@@ -24,7 +24,6 @@ class MessageSerializer
   private
 
   def format_phone_number(phone)
-    # Remove +1 prefix if present
-    phone&.gsub(/^\+1/, '')
+    phone&.gsub(/^\+1/, '')&.gsub(/\D/, '')
   end
 end 
