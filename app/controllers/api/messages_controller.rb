@@ -24,12 +24,20 @@ class Api::MessagesController < Api::BaseController
   def send_sms(message)
     begin
 
+      unless ENV['TWILIO_ACCOUNT_SID'] && ENV['TWILIO_AUTH_TOKEN'] && ENV['TWILIO_PHONE_NUMBER']
+        Rails.logger.error "Missing Twilio environment variables"
+        message.update(status: 'failed')
+        return
+      end
+
       client = Twilio::REST::Client.new(
         ENV['TWILIO_ACCOUNT_SID'],
         ENV['TWILIO_AUTH_TOKEN']
       )
 
-      status_callback_url = "#{request.base_url}/api/webhooks/status"
+      status_callback_url = Rails.env.production? ? 
+      "https://PLACEHOLDER.railway.app/api/webhooks/status" : 
+      "#{request.base_url}/api/webhooks/status"
       
       twilio_message = client.account.messages.create(
         from: ENV['TWILIO_PHONE_NUMBER'],
