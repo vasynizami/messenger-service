@@ -11,7 +11,7 @@ gem 'rswag-api'
 gem 'rswag-ui'
 gem 'dotenv-rails', groups: [:development, :test]
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft"
+# gem "propshaft"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
