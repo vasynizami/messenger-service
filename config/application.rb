@@ -37,5 +37,6 @@ module MessengerService
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.assets.initialize_on_precompile = false
+    config.assets.enabled = false
   end
 end
