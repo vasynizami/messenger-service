@@ -15,6 +15,20 @@ class Api::AuthController < ApplicationController
     end
   end
 
+  def signup
+    user = User.new(email: params[:email], password: params[:password])
+    
+    if user.save
+      token = generate_token(user)
+      render json: { 
+        token: token, 
+        user: { id: user.id, email: user.email } 
+      }, status: :created
+    else
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   def logout
     render json: { message: 'Logged out successfully' }
   end
