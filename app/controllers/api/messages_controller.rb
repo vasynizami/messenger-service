@@ -37,6 +37,9 @@ class Api::MessagesController < Api::BaseController
         ENV['TWILIO_AUTH_TOKEN']
       )
 
+      # Disable SSL verification
+      client.http_client.ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
+
       status_callback_url = Rails.env.production? ? 
       "https://messenger-service-production-4d91.up.railway.app/api/webhooks/status" : 
       "#{request.base_url}/api/webhooks/status"
