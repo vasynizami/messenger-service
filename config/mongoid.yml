@@ -176,16 +176,16 @@ development:
 test:
   clients:
     default:
-      uri:
-        mongodb+srv://vasilianizami:<%= Rails.application.credentials.mongodb[:password] %>@messenger-service.tkl9df6.mongodb.net/messenger_service_test?retryWrites=true&w=majority
-        # database: messenger_service_test
-        # hosts:
-        #   - localhost:27017
-        # options:
-        #   read:
-        #     mode: :primary
-        #   max_pool_size: 1
-  production:
-    clients:
-      default:
-        uri: <%= ENV['MONGODB_URI'] %>
+      uri: mongodb+srv://vasilianizami:<%= Rails.application.credentials.mongodb[:password] %>@messenger-service.tkl9df6.mongodb.net/messenger_service_test?retryWrites=true&w=majority
+      # database: messenger_service_test
+      # hosts:
+      #   - localhost:27017
+      # options:
+      #   read:
+      #     mode: :primary
+      #   max_pool_size: 1
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
