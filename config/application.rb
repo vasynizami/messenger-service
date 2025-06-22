@@ -39,5 +39,9 @@ module MessengerService
     # config.assets.enabled = false
     # config.assets.initialize_on_precompile = false
     config.require_master_key = true
+
+    # Configure SSL certificates for external API calls
+    ENV['SSL_CERT_FILE'] = '/etc/ssl/certs/ca-certificates.crt'
+    ENV['SSL_CERT_DIR'] = '/etc/ssl/certs'
   end
 end
