@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # API routes
   namespace :api do
+    get 'test', to: 'auth#test'
     post 'login', to: 'auth#login'
     post 'logout', to: 'auth#logout'
     post 'signup', to: 'auth#signup'
