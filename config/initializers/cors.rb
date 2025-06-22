@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://PLACEHOLDER.railway.app'
+    origins 'https://messenger-service-production-4d91.up.railway.app'
 
     resource '*',
       headers: :any,

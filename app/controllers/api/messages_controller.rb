@@ -36,7 +36,7 @@ class Api::MessagesController < Api::BaseController
       )
 
       status_callback_url = Rails.env.production? ? 
-      "https://PLACEHOLDER.railway.app/api/webhooks/status" : 
+      "https://messenger-service-production-4d91.up.railway.app/api/webhooks/status" : 
       "#{request.base_url}/api/webhooks/status"
       
       twilio_message = client.account.messages.create(
